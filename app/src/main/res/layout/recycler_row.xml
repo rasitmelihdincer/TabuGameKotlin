@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
 
 
@@ -12,11 +13,12 @@
         android:id="@+id/forbbidenWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:background="@color/black"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/textshape"
         android:text="deneme"
+
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="#52489C"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
