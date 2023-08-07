@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_startFragment2_to_gameFragment2"
             app:destination="@id/gameFragment2" />
+        <action
+            android:id="@+id/action_startFragment2_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment2"
@@ -19,7 +22,15 @@
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <argument
-            android:name="teamName"
+            android:name="teamName1"
+            app:argType="string" />
+        <argument
+            android:name="teamName2"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.tabugamekotlin.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

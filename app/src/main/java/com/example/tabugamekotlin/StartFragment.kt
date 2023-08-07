@@ -34,12 +34,12 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.startGameButton.setOnClickListener {
-            val firstTeamName =binding.firstTeamName.text.toString()
-            val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(firstTeamName)
+            val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString())
             Navigation.findNavController(it).navigate(action)
-
-
-
+        }
+        binding.settingButton.setOnClickListener {
+            val action = StartFragmentDirections.actionStartFragment2ToSettingFragment()
+            Navigation.findNavController(it).navigate(action)
         }
 
     }

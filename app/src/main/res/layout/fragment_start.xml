@@ -14,14 +14,15 @@
         android:id="@+id/textView"
         android:layout_width="336dp"
         android:layout_height="178dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="Welcome Tabu Game!"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/settingButton" />
 
     <EditText
         android:id="@+id/firstTeamName"
@@ -40,7 +41,7 @@
         android:backgroundTint="#52489C"/>
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/secondTeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -67,6 +68,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/secondTeamName" />
+
+    <ImageView
+        android:id="@+id/settingButton"
+        android:layout_width="52dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
