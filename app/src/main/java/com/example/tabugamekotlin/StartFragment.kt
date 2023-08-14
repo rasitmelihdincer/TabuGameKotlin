@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.tabugamekotlin.databinding.FragmentStartBinding
 import androidx.navigation.ui.navigateUp
 
 
 class StartFragment : Fragment() {
+    var time : Long = 0
+    var passLimit : Int = 0
+    var tabuLimit : Int = 0
+    var finishScore : Int = 0
 
     private lateinit var binding: FragmentStartBinding
 
@@ -32,15 +38,19 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        time = arguments?.getLong("defaultTime")!!
+        passLimit = arguments?.getInt("passLimit")!!
+        tabuLimit = arguments?.getInt("tabuLimit")!!
+        finishScore = arguments?.getInt("finishScore")!!
         binding.startGameButton.setOnClickListener {
-            val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString())
+            val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString(),time,passLimit,tabuLimit,finishScore)
             Navigation.findNavController(it).navigate(action)
         }
         binding.settingButton.setOnClickListener {
             val action = StartFragmentDirections.actionStartFragment2ToSettingFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
 
     }
 
