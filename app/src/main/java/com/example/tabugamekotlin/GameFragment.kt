@@ -65,7 +65,7 @@ class GameFragment : Fragment() {
         loadData2()
         binding.teamName.text = arguments?.getString("teamName1")
         val time = requireArguments().getLong("time")
-        tt = object : CountDownTimer(10000,1000){
+        tt = object : CountDownTimer(time,1000){
             override fun onTick(p0: Long) {
                 binding.time.text = "Time " + (p0/1000).toString()
                 val progress = (p0 / 150)
