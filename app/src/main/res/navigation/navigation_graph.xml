@@ -31,7 +31,7 @@
         <argument
             android:name="finishScore"
             app:argType="integer"
-            android:defaultValue="50" />
+            android:defaultValue="15" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment2"
@@ -56,6 +56,9 @@
         <argument
             android:name="finish"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_gameFragment2_to_finishFragment"
+            app:destination="@id/finishFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -65,5 +68,23 @@
         <action
             android:id="@+id/action_settingFragment_to_startFragment2"
             app:destination="@id/startFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishFragment"
+        android:name="com.example.tabugamekotlin.FinishFragment"
+        android:label="fragment_finishragment"
+        tools:layout="@layout/fragment_finishragment" >
+        <argument
+            android:name="WinnigTeam"
+            app:argType="string" />
+        <argument
+            android:name="SeconTeam"
+            app:argType="string" />
+        <argument
+            android:name="WinnigTeamScore"
+            app:argType="integer" />
+        <argument
+            android:name="SecondTeamScore"
+            app:argType="integer" />
     </fragment>
 </navigation>

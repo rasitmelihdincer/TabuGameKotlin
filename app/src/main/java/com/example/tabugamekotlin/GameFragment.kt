@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabugamekotlin.Adapter.RecyclerViewAdapter
@@ -40,6 +41,7 @@ class GameFragment : Fragment() {
     private val BASE_URL = "https://raw.githubusercontent.com/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -64,13 +66,14 @@ class GameFragment : Fragment() {
         binding.teamName.text = arguments?.getString("teamName1")
         val time = requireArguments().getLong("time")
         passLimit = arguments?.getInt("pass")!!
-    //    val finishScore = arguments?.getInt("finish")
+
 
         tt = object : CountDownTimer(10000,1000){
             override fun onTick(p0: Long) {
                 binding.time.text = "Time " + (p0/1000).toString()
                 val progress = (p0 / 150)
                 binding.progressBar.setProgress(progress.toInt())
+
             }
             override fun onFinish() {
                 val dialogView = LayoutInflater.from(context).inflate(R.layout.dialogcard,null)
@@ -80,8 +83,10 @@ class GameFragment : Fragment() {
                 var secondTeam = dialogView.findViewById<TextView>(R.id.dialogSecondTeam)
                 var dialogScoreFirstTeam = dialogView.findViewById<TextView>(R.id.dialogFirstTeamScore)
                 var dialogScoreSecondTeam = dialogView.findViewById<TextView>(R.id.dialogSecondTeamScore)
-                firstTeam.text = arguments?.getString("teamName1")
-                secondTeam.text = arguments?.getString("teamName2")
+                val firstTeamName : String =  arguments?.getString("teamName1")!!
+                val secondTeamName : String = arguments?.getString("teamName2")!!
+                firstTeam.text = firstTeamName
+                secondTeam.text = secondTeamName
                 dialogScoreFirstTeam.text = firstTeamScore.toString()
                 dialogScoreSecondTeam.text = secondTeamScore.toString()
                 var buttonGo =dialogView.findViewById<Button>(R.id.buttonGo)
@@ -105,12 +110,21 @@ class GameFragment : Fragment() {
                     }
                 alertDialog.setCancelable(false)
                 alertDialog.show()
-
+                val finishScore = arguments?.getInt("finish")
+                if(firstTeamScore == finishScore || firstTeamScore >= finishScore!!) {
+                    val action = GameFragmentDirections.actionGameFragment2ToFinishFragment(firstTeamName,secondTeamName,firstTeamScore,secondTeamScore)
+                    tt.cancel()
+                    alertDialog.dismiss()
+                    view?.let { Navigation.findNavController(it).navigate(action) }
+                } else if (secondTeamScore == finishScore || secondTeamScore >= finishScore) {
+                    val action = GameFragmentDirections.actionGameFragment2ToFinishFragment(firstTeamName,secondTeamName,firstTeamScore,secondTeamScore)
+                    tt.cancel()
+                    alertDialog.dismiss()
+                    view?.let { Navigation.findNavController(it).navigate(action) }
+                }
             }
         }
         tt.start()
-
-
     }
 
     private fun loadData2(){
@@ -158,8 +172,11 @@ class GameFragment : Fragment() {
 
                                         }
                                 }
+                            }
+                            binding.tabuButton.setOnClickListener {
 
                             }
+
                         }
                     }
                 }
@@ -196,4 +213,6 @@ class GameFragment : Fragment() {
         }
         recyclerViewAdapter!!.notifyDataSetChanged()
     }
+
 }
+
