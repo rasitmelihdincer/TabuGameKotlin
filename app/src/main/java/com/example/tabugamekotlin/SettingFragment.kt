@@ -119,6 +119,9 @@ class SettingFragment : Fragment() {
 
         })
 
+
+
+
         binding.saveButton.setOnClickListener {
             val action = SettingFragmentDirections.actionSettingFragmentToStartFragment2()
             action.defaultTime = value

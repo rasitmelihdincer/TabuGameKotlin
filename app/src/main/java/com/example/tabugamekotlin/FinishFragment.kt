@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.tabugamekotlin.databinding.FragmentFinishragmentBinding
 
 class FinishFragment : Fragment() {
@@ -36,15 +37,20 @@ class FinishFragment : Fragment() {
             if (firstTeamScore >= secondTeamScore!!){
                 binding.winnigTeam.text = firstTeamName
                 binding.firstTeam.text = firstTeamName
-                binding.firstTeamFinishScore.text = firstTeamScore.toString()
-                binding.secondTeamFinishScore.text = secondTeamScore.toString()
+                binding.firstTeamFinishScore.text =   "Score : " + firstTeamScore.toString()
+                binding.secondTeamFinishScore.text = "Score : " + secondTeamScore.toString()
             } else if (secondTeamScore >= firstTeamScore!!){
                 binding.winnigTeam.text = secondTeamName
                 binding.firstTeam.text = secondTeamName
-                binding.firstTeamFinishScore.text = secondTeamScore.toString()
-                binding.secondTeamFinishScore.text = firstTeamScore.toString()
+                binding.firstTeamFinishScore.text = "Score : " +secondTeamScore.toString()
+                binding.secondTeamFinishScore.text = "Score : " +firstTeamScore.toString()
             }
         }
+        binding.menuButton.setOnClickListener {
+            val action = FinishFragmentDirections.actionFinishFragmentToStartFragment2()
+            Navigation.findNavController(view).navigate(action)
+        }
+
 
     }
 }

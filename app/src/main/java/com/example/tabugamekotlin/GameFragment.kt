@@ -37,7 +37,7 @@ class GameFragment : Fragment() {
     private var firstTeamScore = 0
     private var secondTeamScore = 0
     private var x = 0
-    private var passLimit = 0
+    private var y = 0
     private val BASE_URL = "https://raw.githubusercontent.com/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,9 +65,6 @@ class GameFragment : Fragment() {
         loadData2()
         binding.teamName.text = arguments?.getString("teamName1")
         val time = requireArguments().getLong("time")
-        passLimit = arguments?.getInt("pass")!!
-
-
         tt = object : CountDownTimer(10000,1000){
             override fun onTick(p0: Long) {
                 binding.time.text = "Time " + (p0/1000).toString()
@@ -98,12 +95,14 @@ class GameFragment : Fragment() {
                             scoreChanged = true
                             textChanged = true
                             x = 0
+                            y = 0
                         } else {
                             binding.teamName.text = arguments?.getString("teamName1")
                             binding.scoreText.text = firstTeamScore.toString()
                             textChanged = false
                             scoreChanged = false
                             x = 0
+                            y = 0
                         }
                     tt.start()
                     alertDialog.dismiss()
@@ -157,7 +156,7 @@ class GameFragment : Fragment() {
                                 }
                                    data()
                             }
-
+                            val passLimit : Int = arguments?.getInt("pass")!!
                             binding.passButton.setOnClickListener {
                                 if (!scoreChanged){
                                     x++
@@ -173,8 +172,25 @@ class GameFragment : Fragment() {
                                         }
                                 }
                             }
+                            var tabuLimit : Int = arguments?.getInt("tabu")!!
                             binding.tabuButton.setOnClickListener {
+                                if (!scoreChanged){
+                                    y++
+                                    if (y <= tabuLimit ){
+                                        firstTeamScore--
+                                        binding.scoreText.text = firstTeamScore.toString()
+                                        data()
+                                    }
+                                }
+                                else if (scoreChanged){
+                                    y++
+                                    if (y <= tabuLimit){
+                                        secondTeamScore--
+                                        binding.scoreText.text = secondTeamScore.toString()
+                                        data()
 
+                                    }
+                                }
                             }
 
                         }
