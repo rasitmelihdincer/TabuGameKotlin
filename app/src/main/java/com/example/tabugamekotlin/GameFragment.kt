@@ -64,7 +64,7 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadData2()
         binding.teamName.text = arguments?.getString("teamName1")
-        val time = requireArguments().getLong("time")
+        val time : Long = arguments?.getLong("time")!!
         tt = object : CountDownTimer(time,1000){
             override fun onTick(p0: Long) {
                 binding.time.text = "Time " + (p0/1000).toString()
