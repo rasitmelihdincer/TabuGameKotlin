@@ -65,11 +65,12 @@ class GameFragment : Fragment() {
         loadData2()
         binding.teamName.text = arguments?.getString("teamName1")
         val time : Long = arguments?.getLong("time")!!
+
         tt = object : CountDownTimer(time,1000){
-            override fun onTick(p0: Long) {
-                binding.time.text = "Time " + (p0/1000).toString()
-                val progress = (p0 / 150)
-                binding.progressBar.setProgress(progress.toInt())
+            override fun onTick(time: Long) {
+                binding.time.text = "Time " + (time/1000).toString()
+                val progress = time / 600
+                binding.progressBar.progress = progress.toInt()
 
             }
             override fun onFinish() {
@@ -91,14 +92,14 @@ class GameFragment : Fragment() {
                 buttonGo.setOnClickListener {
                         if (!textChanged){
                             binding.teamName.text = arguments?.getString("teamName2")
-                            binding.scoreText.text = secondTeamScore.toString()
+                            binding.scoreText.setText("Score : ${secondTeamScore}")
                             scoreChanged = true
                             textChanged = true
                             x = 0
                             y = 0
                         } else {
                             binding.teamName.text = arguments?.getString("teamName1")
-                            binding.scoreText.text = firstTeamScore.toString()
+                            binding.scoreText.setText("Score : ${firstTeamScore}")
                             textChanged = false
                             scoreChanged = false
                             x = 0
@@ -109,22 +110,24 @@ class GameFragment : Fragment() {
                     }
                 alertDialog.setCancelable(false)
                 alertDialog.show()
-                val finishScore = arguments?.getInt("finish")
-                if(firstTeamScore == finishScore || firstTeamScore >= finishScore!!) {
-                    val action = GameFragmentDirections.actionGameFragment2ToFinishFragment(firstTeamName,secondTeamName,firstTeamScore,secondTeamScore)
-                    tt.cancel()
-                    alertDialog.dismiss()
-                    view?.let { Navigation.findNavController(it).navigate(action) }
-                } else if (secondTeamScore == finishScore || secondTeamScore >= finishScore) {
-                    val action = GameFragmentDirections.actionGameFragment2ToFinishFragment(firstTeamName,secondTeamName,firstTeamScore,secondTeamScore)
-                    tt.cancel()
-                    alertDialog.dismiss()
-                    view?.let { Navigation.findNavController(it).navigate(action) }
-                }
+                    val finishScore : Int = arguments?.getInt("finish")!!
+                    if(firstTeamScore >= finishScore) {
+                        val action = GameFragmentDirections.actionGameFragment2ToFinishFragment(firstTeamName,secondTeamName,firstTeamScore,secondTeamScore)
+                        alertDialog.dismiss()
+                        tt.cancel()
+                        view?.let { Navigation.findNavController(it).navigate(action) }
+                    } else if (secondTeamScore >= finishScore) {
+                        val action = GameFragmentDirections.actionGameFragment2ToFinishFragment(firstTeamName,secondTeamName,firstTeamScore,secondTeamScore)
+                        alertDialog.dismiss()
+                        tt.cancel()
+                        view?.let { Navigation.findNavController(it).navigate(action) }
+                    }
             }
         }
         tt.start()
+
     }
+
 
     private fun loadData2(){
         val retrofit = Retrofit.Builder()
@@ -149,10 +152,10 @@ class GameFragment : Fragment() {
                             binding.trueButton.setOnClickListener {
                                 if (!scoreChanged){
                                     firstTeamScore++
-                                    binding.scoreText.text = firstTeamScore.toString()
+                                    binding.scoreText.setText("Score : ${firstTeamScore}")
                                 }else{
                                     secondTeamScore++
-                                    binding.scoreText.text = secondTeamScore.toString()
+                                    binding.scoreText.setText("Score : ${secondTeamScore}")
                                 }
                                    data()
                             }

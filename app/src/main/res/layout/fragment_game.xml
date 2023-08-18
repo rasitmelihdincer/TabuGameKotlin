@@ -21,26 +21,20 @@
             android:id="@+id/teamName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="188dp"
+            android:layout_marginStart="20dp"
             android:text="A takımı "
             android:textColor="@color/white"
+            android:layout_marginEnd="50dp"
+
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/mainWord"
-            app:layout_constraintEnd_toStartOf="@+id/time"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.29" />
+             />
 
         <TextView
             android:id="@+id/scoreText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Score"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textColor="@color/white"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/mainWord"
-            app:layout_constraintStart_toStartOf="@+id/teamName" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
@@ -120,8 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:width="1dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
             android:background="@drawable/buttonstyle"
             android:text="True"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,9 +126,8 @@
             android:id="@+id/passButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginStart="50dp"
+
             android:width="1dp"
             android:background="@drawable/buttonstyle"
             android:text="Pass"
@@ -147,8 +139,7 @@
             android:id="@+id/tabuButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
+             android:layout_marginStart="50dp"
             android:width="1dp"
             android:background="@drawable/buttonstyle"
             android:text="Tabu!"
