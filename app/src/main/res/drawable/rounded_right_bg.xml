@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#176B87"/> <!-- Arka plan rengi olarak mavi kullanıldı -->
+
+    <!-- Sol üst ve sol alt köşeleri 0dp yani düz yapın, sağ üst ve sağ alt köşeleri yuvarlak yapın -->
+    <corners
+        android:topRightRadius="50dp"
+        android:bottomRightRadius="50dp"/>
+</shape>
