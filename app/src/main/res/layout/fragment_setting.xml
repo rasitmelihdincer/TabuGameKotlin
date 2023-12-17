@@ -32,36 +32,14 @@
 
         <SeekBar
             android:id="@+id/timeSeekbar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            style="@style/CustomSeekBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:max="3"
             android:progress="0"
             android:indeterminate="false"
-
             />
-        <TextView
-            android:id="@+id/settingsTabuText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            android:layout_marginStart="10dp"
-            android:text="Tabu"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar" />
 
-        <SeekBar
-            android:id="@+id/tabuSeekbar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:max="3"
-            android:progress="0"
-
-            />
         <TextView
             android:id="@+id/settingsPassText"
             android:layout_width="match_parent"
@@ -75,11 +53,10 @@
 
         <SeekBar
             android:id="@+id/passSeekbar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            style="@style/CustomSeekBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:max="3"
             android:progress="0"
             />
         <TextView
@@ -92,14 +69,13 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/seekBar" />
-
         <SeekBar
             android:id="@+id/scoreSeekbar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            style="@style/CustomSeekBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:max="3"
+
             android:progress="0"
             />
     </LinearLayout>

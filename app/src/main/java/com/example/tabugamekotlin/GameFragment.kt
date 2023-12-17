@@ -68,10 +68,8 @@ class GameFragment : Fragment() {
 
         tt = object : CountDownTimer(time,1000){
             override fun onTick(time: Long) {
-                binding.time.text = "Time " + (time/1000).toString()
+                binding.time.text = (time/1000).toString()
                 val progress = time / 600
-                binding.progressBar.progress = progress.toInt()
-
             }
             override fun onFinish() {
                 val dialogView = LayoutInflater.from(context).inflate(R.layout.dialogcard,null)
@@ -181,7 +179,7 @@ class GameFragment : Fragment() {
                                     y++
                                     if (y <= tabuLimit ){
                                         firstTeamScore--
-                                        binding.scoreText.text = firstTeamScore.toString()
+                                        binding.scoreText.setText("Score : ${firstTeamScore}")
                                         data()
                                     }
                                 }

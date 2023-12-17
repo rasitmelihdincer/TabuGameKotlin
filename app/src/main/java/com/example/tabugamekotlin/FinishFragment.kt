@@ -36,12 +36,14 @@ class FinishFragment : Fragment() {
         if ((firstTeamScore != null) && (secondTeamScore != null) ) {
             if (firstTeamScore >= secondTeamScore!!){
                 binding.winnigTeam.text = firstTeamName
+                binding.secondTeam.text = secondTeamName
                 binding.firstTeam.text = firstTeamName
                 binding.firstTeamFinishScore.text =   "Score : " + firstTeamScore.toString()
                 binding.secondTeamFinishScore.text = "Score : " + secondTeamScore.toString()
             } else if (secondTeamScore >= firstTeamScore!!){
                 binding.winnigTeam.text = secondTeamName
                 binding.firstTeam.text = secondTeamName
+                binding.secondTeam.text = firstTeamName
                 binding.firstTeamFinishScore.text = "Score : " +secondTeamScore.toString()
                 binding.secondTeamFinishScore.text = "Score : " +firstTeamScore.toString()
             }

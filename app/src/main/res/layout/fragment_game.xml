@@ -4,148 +4,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#52489C"
+    android:background="@drawable/vvv"
     tools:context=".GameFragment">
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/teamName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="A takımı "
-            android:textColor="@color/white"
-            android:layout_marginEnd="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
 
-            android:textSize="30sp"
-             />
 
-        <TextView
-            android:id="@+id/scoreText"
+            >
+            <TextView
+                android:id="@+id/teamName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="A Team"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_right_bg"
+                android:textSize="30sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="45"
+                android:layout_weight="1"
+                android:textSize="40sp"
+                android:textAlignment="center"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="B Team"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:background="@drawable/rounded_left_bg"
+                android:textSize="30sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/scoreText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="score"
+                android:textSize="30sp"
+                />
+
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:layout_marginTop="30dp"
+            android:id="@+id/aaa"
 
-    </LinearLayout>
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:orientation="vertical"
-        >
+                <TextView
+                    android:id="@+id/mainWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/buttonstyle"
+                    android:text="A Team"
+                    android:textAlignment="center"
+                    android:textSize="40sp" />
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Time"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/mainWord"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.29" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mainWord" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerView"
+                    app:layout_constraintTop_toTopOf="parent"
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_weight="1"
+                    android:gravity="center_vertical">
 
-            android:scaleY="4"
+                    <TextView
+                        android:id="@+id/passButton"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Pass"
+                        android:background="@drawable/circle_button"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:layout_margin="10dp"/>
 
-            />
+                    <TextView
+                        android:id="@+id/tabuButton"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Taboo"
+                        android:background="@drawable/circle_button"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:layout_margin="10dp"/>
 
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="345dp"
-        android:layout_height="377dp"
-        android:layout_marginTop="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainWord" />
-
-    <TextView
-        android:id="@+id/mainWord"
-        android:layout_width="345dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:background="@drawable/buttonstyle"
-        android:text="deneme"
-        android:textAlignment="center"
-        android:textColor="#52489C"
-        android:textSize="45sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
-
-        <Button
-            android:id="@+id/trueButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="1dp"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/buttonstyle"
-            android:text="True"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                    <TextView
+                        android:id="@+id/trueButton"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="True"
+                        android:background="@drawable/circle_button"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:layout_margin="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <Button
-            android:id="@+id/passButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
 
-            android:width="1dp"
-            android:background="@drawable/buttonstyle"
-            android:text="Pass"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-        <Button
-            android:id="@+id/tabuButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_marginStart="50dp"
-            android:width="1dp"
-            android:background="@drawable/buttonstyle"
-            android:text="Tabu!"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
     </LinearLayout>
 
 

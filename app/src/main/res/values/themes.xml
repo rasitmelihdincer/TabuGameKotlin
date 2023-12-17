@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.TabuGameKotlin" parent="Base.Theme.TabuGameKotlin" />
+
+    <style name="CustomSeekBarStyle" parent="android:Widget.SeekBar">
+        <item name="android:progressDrawable">@drawable/custom_seekbar</item>
+        <item name="android:thumb">@drawable/custom_seekbar_thumb</item>
+    </style>
+
 </resources>

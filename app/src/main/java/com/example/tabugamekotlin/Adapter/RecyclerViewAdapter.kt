@@ -8,15 +8,8 @@ import com.example.tabugamekotlin.databinding.RecyclerRowBinding
 
 class RecyclerViewAdapter(var words : ArrayList<Model>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
-
     class ViewHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind ( wordsModel : ArrayList<Model> , forbidden : ArrayList<Model>){
-         //   binding.forbbidenWord.text = wordsModel[0].forbiddenWords.toString()
-            binding.forbbidenWord.text = forbidden[0].forbiddenWords.toString()
 
-
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,10 +25,5 @@ class RecyclerViewAdapter(var words : ArrayList<Model>) : RecyclerView.Adapter<R
       //  holder.bind(words.get(position))
         holder.binding.forbbidenWord.text = words[0].forbiddenWords!![position]
 
-
-
-
     }
-
-
 }

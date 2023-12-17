@@ -6,9 +6,6 @@ import retrofit2.http.GET
 
 
 interface ApiInterface {
-
     @GET("nejdetkadir/turkish-taboo-words/main/data/words.json")
     fun getData() : Call<List<Model>>
-
-
 }

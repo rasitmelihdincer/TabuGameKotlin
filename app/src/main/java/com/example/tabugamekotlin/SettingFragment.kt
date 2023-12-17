@@ -47,11 +47,11 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.timeSeekbar.max = 3
+
         binding.settingsTimeText.text = "Time : ${value} sn "
         binding.timeSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-               value = ((p1 + 1) * 30).toLong()
+               value = p1.toLong()
                value = value * 1000
                binding.settingsTimeText.text = "Time : ${value/1000} sn "
 
@@ -79,23 +79,6 @@ class SettingFragment : Fragment() {
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
                 passLimit = passLimit
-            }
-
-        })
-        binding.tabuSeekbar.max = 4
-        binding.settingsTabuText.text = "Tabu Limit: ${tabuLimit}"
-        binding.tabuSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                tabuLimit = (p1 + 1) * 1
-                binding.settingsTabuText.text = "Tabu Limit: ${tabuLimit}"
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                tabuLimit = tabuLimit
             }
 
         })
