@@ -4,28 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#52489C"
-    tools:context=".SettingFragment"
-
-
-    >
+    android:background="#7752FE"
+    tools:context=".SettingFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="25dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+
+            />
+        <EditText
+            android:id="@+id/firstTeamName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/buttonstyle"
+            android:hint="Enter Team Name"
+            android:textColorHint="#190482"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textAlignment="center"
+            android:textColor="#190482"
+            />
+
+        <EditText
+            android:id="@+id/secondTeamName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/buttonstyle"
+            android:hint="Enter Team Name2"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textAlignment="center"
+            android:textColor="#190482"
+            android:textColorHint="#190482"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <TextView
             android:id="@+id/settingsTimeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Time"
             android:layout_marginStart="10dp"
+            android:text="Time"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/seekBar" />
@@ -36,16 +84,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:progress="0"
             android:indeterminate="false"
-            />
+            android:progress="0" />
 
         <TextView
             android:id="@+id/settingsPassText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
             android:text="Pass"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -57,18 +104,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:progress="0"
-            />
+            android:progress="0" />
+
         <TextView
             android:id="@+id/settingsScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
             android:text="Score"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/seekBar" />
+
         <SeekBar
             android:id="@+id/scoreSeekbar"
             style="@style/CustomSeekBarStyle"
@@ -76,22 +124,26 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
 
-            android:progress="0"
-            />
+            android:progress="0" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
         android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         android:background="@drawable/buttonstyle"
-        android:textColor="#52489C"
+        android:backgroundTint="#190482"
         android:text="Save and Turn MENU"
-        />
+
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

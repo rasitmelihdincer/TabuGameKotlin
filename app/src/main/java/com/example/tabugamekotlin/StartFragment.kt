@@ -38,13 +38,16 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*
         time = arguments?.getLong("defaultTime")!!
         passLimit = arguments?.getInt("passLimit")!!
         tabuLimit = arguments?.getInt("tabuLimit")!!
         finishScore = arguments?.getInt("finishScore")!!
+
+         */
         binding.startGameButton.setOnClickListener {
-            val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString(),time,passLimit,tabuLimit,finishScore)
-            Navigation.findNavController(it).navigate(action)
+          //  val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString(),time,passLimit,tabuLimit,finishScore)
+          // Navigation.findNavController(it).navigate(action)
         }
         binding.settingButton.setOnClickListener {
             val action = StartFragmentDirections.actionStartFragment2ToSettingFragment()

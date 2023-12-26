@@ -16,6 +16,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabugamekotlin.Adapter.RecyclerViewAdapter
+import com.example.tabugamekotlin.Model.Data
 import com.example.tabugamekotlin.Model.Model
 import com.example.tabugamekotlin.Service.ApiInterface
 import com.example.tabugamekotlin.databinding.FragmentGameBinding
@@ -23,12 +24,13 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.random.Random
 
 
 class GameFragment : Fragment() {
 
     private var recyclerViewAdapter : RecyclerViewAdapter? = null
-    private lateinit var words : ArrayList<Model>
+    private lateinit var words : Model
     private lateinit var binding: FragmentGameBinding
     private lateinit var tt : CountDownTimer
     private var textChanged = false
@@ -38,7 +40,10 @@ class GameFragment : Fragment() {
     private var secondTeamScore = 0
     private var x = 0
     private var y = 0
-    private val BASE_URL = "https://raw.githubusercontent.com/"
+    private var z = 3
+    private val BASE_URL = "https://www.taboocardsapi.com/"
+    var teamName1 : String? = null
+    var teamName2 : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,7 +68,10 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadData2()
-        binding.teamName.text = arguments?.getString("teamName1")
+         teamName1  = arguments?.getString("teamName1")
+        teamName2 = arguments?.getString("teamName2")
+        binding.teamName.text = teamName1
+        binding.teamName2.text = teamName2
         val time : Long = arguments?.getLong("time")!!
 
         tt = object : CountDownTimer(time,1000){
@@ -89,19 +97,22 @@ class GameFragment : Fragment() {
                 var alertDialog = alert.create()
                 buttonGo.setOnClickListener {
                         if (!textChanged){
-                            binding.teamName.text = arguments?.getString("teamName2")
-                            binding.scoreText.setText("Score : ${secondTeamScore}")
+                        //    binding.scoreText.setText("Score : ${secondTeamScore}")
                             scoreChanged = true
                             textChanged = true
                             x = 0
                             y = 0
+                            z = 3
+                            binding.passButton.text = "Pass ${z}"
                         } else {
                             binding.teamName.text = arguments?.getString("teamName1")
-                            binding.scoreText.setText("Score : ${firstTeamScore}")
+                        //    binding.scoreText.setText("Score : ${firstTeamScore}")
                             textChanged = false
                             scoreChanged = false
                             x = 0
                             y = 0
+                            z = 3
+                            binding.passButton.text = "Pass ${z}"
                         }
                     tt.start()
                     alertDialog.dismiss()
@@ -135,39 +146,49 @@ class GameFragment : Fragment() {
 
         val service = retrofit.create(ApiInterface::class.java)
         val call = service.getData()
-        call.enqueue(object : retrofit2.Callback<List<Model>> {
+        call.enqueue(object : retrofit2.Callback<Model> {
             override fun onResponse(
-                call: Call<List<Model>>,
-                response: Response<List<Model>>,
+                call: Call<Model>,
+                response: Response<Model>,
             ) {
                 if (response.isSuccessful) {
+                    println("aaaa")
                     response.body()?.let {
-                        words = ArrayList(it)
+                        words = it
                         words?.let {
-                            recyclerViewAdapter = RecyclerViewAdapter(it )
+                            println("bbbb")
+                            println(response.body())
+                            recyclerViewAdapter = RecyclerViewAdapter(words)
                             binding.recyclerView.adapter = recyclerViewAdapter
-                            binding.mainWord.text = words!![0].word
+                            binding.mainWord.text = words.data[0].title
                             binding.trueButton.setOnClickListener {
                                 if (!scoreChanged){
                                     firstTeamScore++
-                                    binding.scoreText.setText("Score : ${firstTeamScore}")
+
+                                    binding.teamName.text = teamName1+ " :" + firstTeamScore
                                 }else{
                                     secondTeamScore++
-                                    binding.scoreText.setText("Score : ${secondTeamScore}")
+
+                                    binding.teamName2.text = teamName2 + " :"+ secondTeamScore
                                 }
                                    data()
                             }
-                            val passLimit : Int = arguments?.getInt("pass")!!
+                            var passLimit : Int = arguments?.getInt("pass")!!
                             binding.passButton.setOnClickListener {
                                 if (!scoreChanged){
                                     x++
                                     if (x <= passLimit ){
+                                        z--
+                                        binding.passButton.text = "Pass ${z}"
                                         data()
                                     }
                                 }
                                 else if (scoreChanged){
                                     x++
                                         if (x <= passLimit){
+                                             z--
+                                            binding.passButton.text = "Pass ${z}"
+
                                             data()
 
                                         }
@@ -179,7 +200,7 @@ class GameFragment : Fragment() {
                                     y++
                                     if (y <= tabuLimit ){
                                         firstTeamScore--
-                                        binding.scoreText.setText("Score : ${firstTeamScore}")
+                                        binding.teamName.text = teamName1+ " :" + firstTeamScore
                                         data()
                                     }
                                 }
@@ -187,7 +208,7 @@ class GameFragment : Fragment() {
                                     y++
                                     if (y <= tabuLimit){
                                         secondTeamScore--
-                                        binding.scoreText.text = secondTeamScore.toString()
+                                        binding.teamName2.text = teamName2 + " :"+ secondTeamScore
                                         data()
 
                                     }
@@ -198,37 +219,21 @@ class GameFragment : Fragment() {
                     }
                 }
             }
-            override fun onFailure(call: Call<List<Model>>, t: Throwable) {
-                println("sıkıntı var")
+            override fun onFailure(call: Call<Model>, t: Throwable) {
+                println("sıkıntı varaaa")
+                t.printStackTrace()
             }
         })
     }
-
+    var randomInt = getRandomInt(1..1000)
     fun data(){
-        currentIndex++
-        binding.mainWord.text = words!![currentIndex].word
-        recyclerViewAdapter!!.words[0].forbiddenWords?.clear()
-        words!![currentIndex].forbiddenWords?.get(0)?.let { it1 ->
-            recyclerViewAdapter!!.words[0].forbiddenWords?.add(
-                it1)
-        }
-        words!![currentIndex].forbiddenWords?.get(1)?.let { it1 ->
-            recyclerViewAdapter!!.words[0].forbiddenWords?.add(
-                it1)
-        }
-        words!![currentIndex].forbiddenWords?.get(2)?.let { it1 ->
-            recyclerViewAdapter!!.words[0].forbiddenWords?.add(
-                it1)
-        }
-        words!![currentIndex].forbiddenWords?.get(3)?.let { it1 ->
-            recyclerViewAdapter!!.words[0].forbiddenWords?.add(
-                it1)
-        }
-        words!![currentIndex].forbiddenWords?.get(4)?.let { it1 ->
-            recyclerViewAdapter!!.words[0].forbiddenWords?.add(
-                it1)
-        }
+        randomInt++
+        binding.mainWord.text = words.data[randomInt].title
+         recyclerViewAdapter?.updateForbiddenWords(words.data[randomInt].forbiddenWords)
         recyclerViewAdapter!!.notifyDataSetChanged()
+    }
+    fun getRandomInt(range: IntRange): Int {
+        return Random.nextInt(range.first, range.last + 1)
     }
 
 }

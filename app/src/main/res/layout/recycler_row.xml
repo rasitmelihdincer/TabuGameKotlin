@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:background="@color/white"
+    android:layout_marginTop="5dp"
+    >
 
 
 
@@ -12,11 +14,11 @@
     <TextView
         android:id="@+id/forbbidenWord"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/rcy_item"
+        android:layout_height="match_parent"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/buttonstyle"
         android:text="deneme"
-
+        android:textColor="#190482"
         android:textAlignment="center"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"

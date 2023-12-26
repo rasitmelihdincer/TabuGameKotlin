@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tabugamekotlin.Model.Model
 import com.example.tabugamekotlin.databinding.RecyclerRowBinding
 
-class RecyclerViewAdapter(var words : ArrayList<Model>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(var words : Model) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -18,12 +18,16 @@ class RecyclerViewAdapter(var words : ArrayList<Model>) : RecyclerView.Adapter<R
     }
 
     override fun getItemCount(): Int {
-        return words[0].forbiddenWords!!.size
+        return 5
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
       //  holder.bind(words.get(position))
-        holder.binding.forbbidenWord.text = words[0].forbiddenWords!![position]
+        holder.binding.forbbidenWord.text = words.data[0].forbiddenWords[position]
 
+    }
+    fun updateForbiddenWords(newWords: ArrayList<String>) {
+        words.data[0].forbiddenWords = newWords
+        notifyDataSetChanged()
     }
 }

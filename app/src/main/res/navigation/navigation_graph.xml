@@ -15,23 +15,6 @@
         <action
             android:id="@+id/action_startFragment2_to_settingFragment"
             app:destination="@id/settingFragment" />
-        <argument
-            android:name="defaultTime"
-            app:argType="long"
-            app:nullable="false"
-            android:defaultValue="60000L" />
-        <argument
-            android:name="passLimit"
-            app:argType="integer"
-            android:defaultValue="3" />
-        <argument
-            android:name="tabuLimit"
-            app:argType="integer"
-            android:defaultValue="3" />
-        <argument
-            android:name="finishScore"
-            app:argType="integer"
-            android:defaultValue="15" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment2"
@@ -66,8 +49,8 @@
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
-            android:id="@+id/action_settingFragment_to_startFragment2"
-            app:destination="@id/startFragment2" />
+            android:id="@+id/action_settingFragment_to_gameFragment2"
+            app:destination="@id/gameFragment2" />
     </fragment>
     <fragment
         android:id="@+id/finishFragment"

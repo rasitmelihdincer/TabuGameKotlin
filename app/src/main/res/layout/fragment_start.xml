@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/vvv"
+    android:background="#8E8FFA"
     android:textAlignment="center"
     tools:context=".StartFragment"
     >
@@ -14,7 +14,7 @@
         android:id="@+id/textView"
         android:layout_width="336dp"
         android:layout_height="178dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:text="Welcome Tabu Game!"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -24,51 +24,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingButton" />
 
-    <EditText
-        android:id="@+id/firstTeamName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Enter Team 1"
-        android:inputType="text"
-        android:textColorHint="@color/white"
-        android:textSize="24sp"
-
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@drawable/startimage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:backgroundTint="#52489C"/>
-
-    <EditText
-        android:id="@+id/secondTeamName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Enter Team 2"
-
-        android:inputType="text"
-        android:textColorHint="@color/white"
-        android:textSize="24sp"
-        android:backgroundTint="#52489C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstTeamName" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/startGameButton"
         android:layout_width="174dp"
         android:layout_height="54dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="50dp"
         android:text="Start Game"
         android:textSize="20dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondTeamName" />
+        app:layout_constraintTop_toBottomOf="@+id/image1" />
 
     <ImageView
         android:id="@+id/settingButton"

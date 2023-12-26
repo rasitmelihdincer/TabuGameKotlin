@@ -25,6 +25,8 @@ class SettingFragment : Fragment() {
     var passLimit : Int = 3
     var tabuLimit : Int = 3
     var finishScore : Int = 30
+    var time : Long = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +47,15 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*
+        time = arguments?.getLong("defaultTime")!!
+        passLimit = arguments?.getInt("passLimit")!!
+        tabuLimit = arguments?.getInt("tabuLimit")!!
+        finishScore = arguments?.getInt("finishScore")!!
+        binding.saveButton.setOnClickListener {
 
+        }
+         */
 
 
         binding.settingsTimeText.text = "Time : ${value} sn "
@@ -106,11 +116,7 @@ class SettingFragment : Fragment() {
 
 
         binding.saveButton.setOnClickListener {
-            val action = SettingFragmentDirections.actionSettingFragmentToStartFragment2()
-            action.defaultTime = value
-            action.passLimit = passLimit
-            action.tabuLimit = tabuLimit
-            action.finishScore = finishScore
+            val action = SettingFragmentDirections.actionSettingFragmentToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString(),value,passLimit,tabuLimit,finishScore)
             Navigation.findNavController(it).navigate(action)
         }
 

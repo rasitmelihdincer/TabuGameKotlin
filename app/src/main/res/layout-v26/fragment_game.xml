@@ -26,20 +26,19 @@
             android:layout_marginTop="5dp"
 
             >
-
             <TextView
                 android:id="@+id/teamName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/rounded_right_bg"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="A Team"
-                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:text="A Team"
+                android:layout_weight="4"
+                android:background="@drawable/rounded_right_bg"
+                android:textSize="20sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+
+                />
 
             <TextView
                 android:id="@+id/time"
@@ -62,7 +61,6 @@
                 android:textColor="@color/white"
                 android:text="B Team"
                 android:layout_weight="4"
-                android:autoSizeTextType="uniform"
                 android:textAlignment="textEnd"
                 android:background="@drawable/rounded_left_bg"
                 android:textSize="20sp"
@@ -81,7 +79,7 @@
             <LinearLayout
                 android:background="@drawable/buttonstyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,20 +96,17 @@
                     android:textColor="@color/white"
                     android:text="A Team"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeMaxTextSize="40sp"
                     android:maxLines="1"
                     android:textAlignment="center"
                     android:textSize="40sp" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-
                       />
 
             </LinearLayout>
