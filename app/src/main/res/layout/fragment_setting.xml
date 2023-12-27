@@ -7,7 +7,9 @@
     android:background="#7752FE"
     tools:context=".SettingFragment">
 
-    <LinearLayout
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,47 +19,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textAlignment="center"
-            android:textSize="40sp"
-            android:textColor="@color/white"
-
-            />
-        <EditText
-            android:id="@+id/firstTeamName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/buttonstyle"
-            android:hint="Enter Team Name"
-            android:textColorHint="#190482"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
-            android:textAlignment="center"
-            android:textColor="#190482"
-            />
-
         <EditText
             android:id="@+id/secondTeamName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/buttonstyle"
             android:hint="Enter Team Name2"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
             android:textAlignment="center"
             android:textColor="#190482"
             android:textColorHint="#190482"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstTeamName" />
+
+        <EditText
+            android:id="@+id/firstTeamName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/buttonstyle"
+            android:hint="Enter Team Name"
+            android:textAlignment="center"
+            android:textColor="#190482"
+            android:textColorHint="#190482"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Settings"
+            android:textAlignment="center"
+
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,82 +73,95 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-        <TextView
-            android:id="@+id/settingsTimeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Time"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <SeekBar
-            android:id="@+id/timeSeekbar"
-            style="@style/CustomSeekBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:indeterminate="false"
-            android:progress="0" />
+    <TextView
+        android:id="@+id/settingsTimeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
 
-        <TextView
-            android:id="@+id/settingsPassText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
-            android:text="Pass"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar" />
+    <SeekBar
+        android:id="@+id/passSeekbar"
+        style="@style/CustomSeekBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        <SeekBar
-            android:id="@+id/passSeekbar"
-            style="@style/CustomSeekBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:progress="0" />
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsPassText" />
 
-        <TextView
-            android:id="@+id/settingsScore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
-            android:text="Score"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar" />
+    <TextView
+        android:id="@+id/settingsScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Score"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passSeekbar" />
 
-        <SeekBar
-            android:id="@+id/scoreSeekbar"
-            style="@style/CustomSeekBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+    <SeekBar
+        android:id="@+id/scoreSeekbar"
+        style="@style/CustomSeekBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsScore" />
 
-            android:progress="0" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/settingsPassText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Pass"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeSeekbar" />
 
     <TextView
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="46dp"
         android:background="@drawable/buttonstyle"
         android:backgroundTint="#190482"
-        android:text="Save and Turn MENU"
-
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
+        android:text="Save and Start"
         android:textAlignment="center"
-        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/scoreSeekbar" />
+
+    <SeekBar
+        android:id="@+id/timeSeekbar"
+        style="@style/CustomSeekBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTimeText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

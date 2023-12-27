@@ -98,7 +98,7 @@
                     android:autoSizeTextType="uniform"
                     android:maxLines="1"
                     android:textAlignment="center"
-                    android:textSize="40sp" />
+                    android:textSize="15sp" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"

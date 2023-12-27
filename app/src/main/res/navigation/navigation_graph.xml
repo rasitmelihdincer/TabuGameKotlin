@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_startFragment2_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_startFragment2_to_howToPlayFragment"
+            app:destination="@id/howToPlayFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment2"
@@ -72,5 +75,14 @@
         <action
             android:id="@+id/action_finishFragment_to_startFragment2"
             app:destination="@id/startFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/howToPlayFragment"
+        android:name="com.example.tabugamekotlin.HowToPlayFragment"
+        android:label="fragment_how_to_play"
+        tools:layout="@layout/fragment_how_to_play" >
+        <action
+            android:id="@+id/action_howToPlayFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 </navigation>

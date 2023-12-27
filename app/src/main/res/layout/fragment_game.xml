@@ -94,13 +94,12 @@
                     android:id="@+id/mainWord"
                     android:background="@drawable/rcy_item"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
+                    android:layout_height="match_parent"
                     android:textColor="@color/white"
                     android:text="A Team"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="12sp"
                     android:autoSizeMaxTextSize="40sp"
-                    android:maxLines="1"
                     android:textAlignment="center"
                     android:textSize="40sp" />
                 <androidx.recyclerview.widget.RecyclerView

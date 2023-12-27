@@ -45,12 +45,14 @@ class StartFragment : Fragment() {
         finishScore = arguments?.getInt("finishScore")!!
 
          */
-        binding.startGameButton.setOnClickListener {
-          //  val action = StartFragmentDirections.actionStartFragment2ToGameFragment2(binding.firstTeamName.text.toString(),binding.secondTeamName.text.toString(),time,passLimit,tabuLimit,finishScore)
-          // Navigation.findNavController(it).navigate(action)
-        }
+
         binding.settingButton.setOnClickListener {
             val action = StartFragmentDirections.actionStartFragment2ToSettingFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
+        binding.howToPlay.setOnClickListener {
+            val action = StartFragmentDirections.actionStartFragment2ToHowToPlayFragment()
             Navigation.findNavController(it).navigate(action)
         }
 
