@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+    // uygulama kimliği
+    //ca-app-pub-2911881888965015~1974949692
 
 }

@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,17 @@ import com.example.tabugamekotlin.Model.Data
 import com.example.tabugamekotlin.Model.Model
 import com.example.tabugamekotlin.Service.ApiInterface
 import com.example.tabugamekotlin.databinding.FragmentGameBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -28,7 +40,7 @@ import kotlin.random.Random
 
 
 class GameFragment : Fragment() {
-
+    lateinit var mAdView : AdView
     private var recyclerViewAdapter : RecyclerViewAdapter? = null
     private lateinit var words : Model
     private lateinit var binding: FragmentGameBinding
@@ -40,13 +52,15 @@ class GameFragment : Fragment() {
     private var secondTeamScore = 0
     private var x = 0
     private var y = 0
-    private var z = 3
+    private var mInterstitialAd: InterstitialAd? = null
+
     private val BASE_URL = "https://www.taboocardsapi.com/"
     var teamName1 : String? = null
     var teamName2 : String? = null
+    var passLimit : Int? = null
+    private var z = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -63,23 +77,43 @@ class GameFragment : Fragment() {
 
     }
 
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        tt.cancel()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
-        loadData2()
-         teamName1  = arguments?.getString("teamName1")
+        MobileAds.initialize(requireContext()) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+
+
+        InterstitialAd.load(requireContext(),"ca-app-pub-2911881888965015/9992824914", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
+
+        teamName1  = arguments?.getString("teamName1")
         teamName2 = arguments?.getString("teamName2")
         binding.teamName.text = teamName1
         binding.teamName2.text = teamName2
         val time : Long = arguments?.getLong("time")!!
-
+         passLimit  = arguments?.getInt("pass")!!
+        z = passLimit as Int
+        binding.passButton.text = "Pass ${z}"
         tt = object : CountDownTimer(time,1000){
             override fun onTick(time: Long) {
                 binding.time.text = (time/1000).toString()
                 val progress = time / 600
             }
             override fun onFinish() {
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(requireActivity())
+                }
                 val dialogView = LayoutInflater.from(context).inflate(R.layout.dialogcard,null)
                 val alert = AlertDialog.Builder(context)
                 alert.setView(dialogView)
@@ -93,27 +127,26 @@ class GameFragment : Fragment() {
                 secondTeam.text = secondTeamName
                 dialogScoreFirstTeam.text = firstTeamScore.toString()
                 dialogScoreSecondTeam.text = secondTeamScore.toString()
-                var buttonGo =dialogView.findViewById<Button>(R.id.buttonGo)
+                var buttonGo =dialogView.findViewById<TextView>(R.id.buttonGo)
                 var alertDialog = alert.create()
                 buttonGo.setOnClickListener {
+
                         if (!textChanged){
-                        //    binding.scoreText.setText("Score : ${secondTeamScore}")
                             scoreChanged = true
                             textChanged = true
                             x = 0
                             y = 0
-                            z = 3
+                            z = passLimit as Int
                             binding.passButton.text = "Pass ${z}"
                         } else {
-                            binding.teamName.text = arguments?.getString("teamName1")
-                        //    binding.scoreText.setText("Score : ${firstTeamScore}")
                             textChanged = false
                             scoreChanged = false
                             x = 0
                             y = 0
-                            z = 3
+                            z = passLimit as Int
                             binding.passButton.text = "Pass ${z}"
                         }
+                    data()
                     tt.start()
                     alertDialog.dismiss()
                     }
@@ -133,12 +166,19 @@ class GameFragment : Fragment() {
                     }
             }
         }
-        tt.start()
 
+            CoroutineScope(Dispatchers.Main).launch{
+                launch {
+                    loadData2()
+                    delay(1500)
+                    tt.start()
+                }
+            }
     }
 
 
-    private fun loadData2(){
+    private  fun loadData2(){
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -164,7 +204,6 @@ class GameFragment : Fragment() {
                             binding.trueButton.setOnClickListener {
                                 if (!scoreChanged){
                                     firstTeamScore++
-
                                     binding.teamName.text = teamName1+ " :" + firstTeamScore
                                 }else{
                                     secondTeamScore++
@@ -173,11 +212,10 @@ class GameFragment : Fragment() {
                                 }
                                    data()
                             }
-                            var passLimit : Int = arguments?.getInt("pass")!!
                             binding.passButton.setOnClickListener {
                                 if (!scoreChanged){
                                     x++
-                                    if (x <= passLimit ){
+                                    if (x <= passLimit!!){
                                         z--
                                         binding.passButton.text = "Pass ${z}"
                                         data()
@@ -185,8 +223,8 @@ class GameFragment : Fragment() {
                                 }
                                 else if (scoreChanged){
                                     x++
-                                        if (x <= passLimit){
-                                             z--
+                                        if (x <= passLimit!!){
+                                            z--
                                             binding.passButton.text = "Pass ${z}"
 
                                             data()
@@ -194,24 +232,23 @@ class GameFragment : Fragment() {
                                         }
                                 }
                             }
-                            var tabuLimit : Int = arguments?.getInt("tabu")!!
                             binding.tabuButton.setOnClickListener {
                                 if (!scoreChanged){
                                     y++
-                                    if (y <= tabuLimit ){
+
                                         firstTeamScore--
                                         binding.teamName.text = teamName1+ " :" + firstTeamScore
                                         data()
-                                    }
+
                                 }
                                 else if (scoreChanged){
                                     y++
-                                    if (y <= tabuLimit){
+
                                         secondTeamScore--
                                         binding.teamName2.text = teamName2 + " :"+ secondTeamScore
                                         data()
 
-                                    }
+
                                 }
                             }
 
@@ -226,14 +263,14 @@ class GameFragment : Fragment() {
         })
     }
     var randomInt = getRandomInt(1..1000)
+    fun getRandomInt(range: IntRange): Int {
+        return Random.nextInt(range.first, range.last + 1)
+    }
     fun data(){
         randomInt++
         binding.mainWord.text = words.data[randomInt].title
          recyclerViewAdapter?.updateForbiddenWords(words.data[randomInt].forbiddenWords)
         recyclerViewAdapter!!.notifyDataSetChanged()
-    }
-    fun getRandomInt(range: IntRange): Int {
-        return Random.nextInt(range.first, range.last + 1)
     }
 
 }

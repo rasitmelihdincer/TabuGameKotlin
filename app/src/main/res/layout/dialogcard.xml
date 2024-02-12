@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <TextView
                 android:id="@+id/buttonGo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,9 +105,10 @@
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/buttonstyle"
                 android:text="Go"
-
+                android:backgroundTint="#C2D9FF"
+                    android:textAlignment="center"
                 android:textColor="#52489C"
-                android:textSize="20dp" />
+                android:textSize="40sp" />
 
 
         </LinearLayout>

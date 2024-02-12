@@ -10,9 +10,6 @@
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
-            android:id="@+id/action_startFragment2_to_gameFragment2"
-            app:destination="@id/gameFragment2" />
-        <action
             android:id="@+id/action_startFragment2_to_settingFragment"
             app:destination="@id/settingFragment" />
         <action
@@ -50,10 +47,13 @@
         android:id="@+id/settingFragment"
         android:name="com.example.tabugamekotlin.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" >
+        tools:layout="@layout/fragment_setting"
+
+        >
         <action
             android:id="@+id/action_settingFragment_to_gameFragment2"
-            app:destination="@id/gameFragment2" />
+            app:destination="@id/gameFragment2"
+            />
     </fragment>
     <fragment
         android:id="@+id/finishFragment"

@@ -6,113 +6,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FinishFragment"
-    android:background="#52489C"
+    android:background="#C2D9FF"
     >
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         >
-
         <TextView
+
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Congratulations!"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/buttonstyle"
+            android:backgroundTint="#7752FE"
+            android:text="CONGRATULATIONS"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textStyle="bold"
+            android:textColor="#190482"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/winnigTeam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/winnigTeam"
+            android:background="@drawable/buttonstyle"
+            android:backgroundTint="#7752FE"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
             android:text="Winning Team"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="#190482"
+            android:textSize="36sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:layout_editor_absoluteX="40dp" />
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="227dp"
-            android:src="@drawable/finishlogo" />
+            android:layout_height="250dp"
+            android:src="@drawable/finishlogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/winnigTeam" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/firstTeam"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="150dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:text="First Team Name"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="24sp"
+            android:textColor="#190482"
+            android:textStyle="bold"
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/firstTeam"
-                android:text="Winning Team"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/firstTeamFinishScore"
-                android:layout_marginLeft="50dp"
-                android:text="Score"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/firstTeamFinishScore"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textSize="24sp"
+            android:textColor="#190482"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/firstTeam"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/firstTeam"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/secondTeam"
-                android:text="Second Team"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/secondTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Second Team Name"
+            android:textColor="#190482"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="24sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/secondTeamFinishScore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstTeam" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/secondTeamFinishScore"
-                android:layout_marginLeft="50dp"
-                android:text="Score"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/secondTeamFinishScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textSize="24sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="24sp"
+            android:textColor="#190482"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/firstTeamFinishScore"
+            app:layout_constraintTop_toBottomOf="@+id/firstTeamFinishScore" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/menuButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonstyle"
+            android:backgroundTint="#190482"
+            android:text="Main Menu"
+            android:layout_marginRight="75dp"
+            android:layout_marginLeft="75dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/secondTeamFinishScore"
+            app:layout_constraintStart_toStartOf="@+id/secondTeam"
+            app:layout_constraintTop_toBottomOf="@+id/secondTeam" />
 
-    </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-2911881888965015/2906302699"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    <Button
-        android:id="@+id/menuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Menu"
-        android:textColor="#52489C"
 
-        android:background="@drawable/buttonstyle"
-        android:backgroundTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

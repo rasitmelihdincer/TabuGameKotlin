@@ -37,7 +37,9 @@
                 android:textSize="20sp"
                 android:maxLines="2"
                 android:ellipsize="end"
-
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="20sp"
                 />
 
             <TextView
@@ -47,6 +49,9 @@
                 android:background="@drawable/time_button"
                 android:textColor="@color/white"
                 android:text="45"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="30sp"
                 android:layout_weight="5"
                 android:textSize="20sp"
                 android:textAlignment="center"
@@ -61,6 +66,9 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/white"
                 android:text="B Team"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="20sp"
                 android:layout_weight="4"
                 android:textAlignment="textEnd"
                 android:background="@drawable/rounded_left_bg"
@@ -164,7 +172,16 @@
                 android:textSize="20dp" />
         </LinearLayout>
 
-
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2911881888965015/8038375721">
+        </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
 

@@ -17,21 +17,23 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.tabugamekotlin.databinding.FragmentGameBinding
 import com.example.tabugamekotlin.databinding.FragmentSettingBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class SettingFragment : Fragment() {
 
     private lateinit var binding : FragmentSettingBinding
-    var value : Long = 60
+    var value : Long = 45000
     var passLimit : Int = 3
     var tabuLimit : Int = 3
     var finishScore : Int = 30
-    var time : Long = 0
-
+    var time : Long = 45000
+    lateinit var mAdView : AdView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
      //   findNavController().navigate(action)
     }
 
@@ -56,9 +58,13 @@ class SettingFragment : Fragment() {
 
         }
          */
+        MobileAds.initialize(requireContext()) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
 
-        binding.settingsTimeText.text = "Time : ${value} sn "
+        binding.settingsTimeText.text = "Time : ${value/1000} sn "
         binding.timeSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                value = p1.toLong()

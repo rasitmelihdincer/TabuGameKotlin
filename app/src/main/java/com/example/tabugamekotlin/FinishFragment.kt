@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.tabugamekotlin.databinding.FragmentFinishragmentBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class FinishFragment : Fragment() {
 
     private lateinit var binding : FragmentFinishragmentBinding
+    lateinit var mAdView : AdView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,7 +31,10 @@ class FinishFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        MobileAds.initialize(requireContext()) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         var firstTeamName = arguments?.getString("WinnigTeam")
         var secondTeamName = arguments?.getString("SeconTeam")
         var firstTeamScore = arguments?.getInt("WinnigTeamScore")
@@ -52,7 +59,5 @@ class FinishFragment : Fragment() {
             val action = FinishFragmentDirections.actionFinishFragmentToStartFragment2()
             Navigation.findNavController(view).navigate(action)
         }
-
-
     }
 }

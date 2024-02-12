@@ -11,6 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tabugamekotlin.databinding.FragmentStartBinding
 import androidx.navigation.ui.navigateUp
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 
 class StartFragment : Fragment() {
@@ -20,9 +24,11 @@ class StartFragment : Fragment() {
     var finishScore : Int = 0
 
     private lateinit var binding: FragmentStartBinding
-
+    lateinit var mAdView : AdView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
     }
 
@@ -30,9 +36,11 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         binding = FragmentStartBinding.inflate(inflater,container,false)
         return binding.root
+
     }
 
 
@@ -45,6 +53,10 @@ class StartFragment : Fragment() {
         finishScore = arguments?.getInt("finishScore")!!
 
          */
+        MobileAds.initialize(requireContext()) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         binding.settingButton.setOnClickListener {
             val action = StartFragmentDirections.actionStartFragment2ToSettingFragment()
